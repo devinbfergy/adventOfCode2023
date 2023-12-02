@@ -32,29 +32,41 @@ func main () {
 	}
 
 	var correctIdsSum int
-
+	var powerSum int
 	for _, line := range lines {
 		game, err := parseGame(line)
 		if err != nil {
 			log.Fatalf("error parsing game: %s", err)
 		}
 		gameCorrect := true
+		highestRed := 0
+		highestGreen := 0
+		highestBlue := 0 
 		for _, set := range game.draws {
 			for key, value := range set {
 				if key == "blue" {
 					if blueCube < value {
 						gameCorrect = false
 					}
+					if value > highestBlue {
+						highestBlue = value
+					} 
 				}
 				if key == "red" {
 					if redCube < value {
 						gameCorrect = false
 					}
+					if value > highestRed {
+						highestRed = value
+					} 
 				}
 				if key == "green" {
 					if greenCube < value {
 						gameCorrect = false
 					}
+					if value > highestGreen {
+						highestGreen = value
+					} 
 				}
 			}
 		}
@@ -64,6 +76,13 @@ func main () {
 			correctIdsSum += game.id
 		}
 		fmt.Println("Ids sum:", correctIdsSum)
+
+		// calculate the power
+		fmt.Println("HRed:",highestRed,"HBlue:", highestBlue, "HGreen:", highestGreen)
+		power := highestBlue * highestGreen * highestRed
+		fmt.Println("Power:", power)
+		powerSum += power
+		fmt.Println("Power Sum:", powerSum)
 	}
 }
 
