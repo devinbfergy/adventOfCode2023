@@ -1,0 +1,7 @@
+go 1.21.0
+// this is to get gopls to work with multiple modules for each day.
+// each day will need to get added to hear to work (vscode plugin is built on gopls)
+use (
+	./day1
+	./day2
+)
