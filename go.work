@@ -3,5 +3,7 @@ go 1.21.0
 // each day will need to get added to hear to work (vscode plugin is built on gopls)
 use (
 	./day1
-	./day2
+	./day2	
+	./day3
+	./day4
 )
